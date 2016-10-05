@@ -20,7 +20,6 @@
     "src/callback/*"
   ],
   "permissions": [
-    "identity",
     "https://chrome-extension-sample.auth0.com/*",
     "https://cdn.auth0.com/*"
   ]

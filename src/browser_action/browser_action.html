@@ -1,10 +1,17 @@
 <!doctype html>
 <head>
 	<style type="text/css">
+		html, body{
+			margin: 0px;
+		}
+
+		*{
+			box-sizing: border-box;
+		}
+
 		#mainPopup {
 			padding: 10px;
-			height: 200px;
-			width: 400px;
+			width: 320px;
 			font-family: Helvetica, Ubuntu, Arial, sans-serif;
 		}
 
@@ -12,54 +19,152 @@
 			font-size: 2em;
 		}
 
-		.loader {
-		  margin: 60px auto;
-		  font-size: 10px;
-		  position: relative;
-		  text-indent: -9999em;
-		  border-top: 1.1em solid rgba(155,155,155, 0.2);
-		  border-right: 1.1em solid rgba(155,155,155, 0.2);
-		  border-bottom: 1.1em solid rgba(155,155,155, 0.2);
-		  border-left: 1.1em solid #9b9b9b;
-		  -webkit-transform: translateZ(0);
-		  transform: translateZ(0);
-		  -webkit-animation: load8 1.1s infinite linear;
-		  animation: load8 1.1s infinite linear;
-		}
-		.loader,
-		.loader:after {
-		  border-radius: 50%;
-		  width: 10em;
-		  height: 10em;
+		.hidden {
+			display: none;
 		}
 
-		@-webkit-keyframes load8 {
+		.profile{
+			min-height: 420px;
+		}
+
+		.picture {
+			height: 100%;
+			width: 100%;
+			position: absolute;
+			top: 0px;
+			left: 0px;
+			background-position: center;
+			background-size: cover;
+		}
+
+		.loading {
+			transform: translate(-50%, -50%);
+		  position: absolute;
+		  top: 50%;
+		  left: 50%;
+		}
+
+		.loading-bar {
+		  display: inline-block;
+		  width: 2px;
+		  height: 16px;
+		  border-radius: 0px;
+		  animation: loading 1s ease-in-out infinite;
+		}
+
+		.loading-bar:nth-child(1) {
+		  background-color: #eb5424;
+		  animation-delay: 0;
+		}
+
+		.loading-bar:nth-child(2) {
+		  background-color: #44c7f4;
+		  animation-delay: 0.09s;
+		}
+
+		.loading-bar:nth-child(3) {
+		  background-color: #16214d;
+		  animation-delay: .18s;
+		}
+
+		.loading-bar:nth-child(4) {
+		  background-color: #eaca2c;
+		  animation-delay: .27s;
+		}
+
+		@keyframes loading {
 		  0% {
-		    -webkit-transform: rotate(0deg);
-		    transform: rotate(0deg);
+		    transform: scale(1);
 		  }
-		  100% {
-		    -webkit-transform: rotate(360deg);
-		    transform: rotate(360deg);
+		  20% {
+		    transform: scale(1, 2.2);
+		  }
+		  40% {
+		    transform: scale(1);
 		  }
 		}
 
-		@keyframes load8 {
-		  0% {
-		    -webkit-transform: rotate(0deg);
-		    transform: rotate(0deg);
-		  }
-		  100% {
-		    -webkit-transform: rotate(360deg);
-		    transform: rotate(360deg);
-		  }
+		.floater-profile {
+			position: absolute;
+			text-align: center;
+			width: 100%;
+			bottom: 0px;
+			left: 0px;
+			background: #343434;
+		}
+
+		hr {
+			border: 0px;
+			border-bottom: #585858 1px solid;
+		}
+
+		h1,h4,h2 {
+			color: #fff;
+			font-weight: 300;
+		}
+
+		h1{
+			color: #eb5424;
+			text-align: center;
+		}
+
+		.nickname::before {
+			content: '@'
+		}
+
+		.form-control{
+			margin: 0.6em 0.4em;
+		}
+
+		button{
+			background: #fff;
+			border: 0px;
+			padding: 0.8em 0.6em;
+			width: 100%;
+		}
+
+		.logout-button{
+			background: #ff3e00;
+		}
+
+		.login-button{
+			background: #7ed321;
+		}
+
+		.tooltip{
+			text-align: center;
+			font-size: 11px;
+			color: #adadad;
 		}
 
 	</style>
 </head>
 <body>
 	<div id="mainPopup">
-		<div class="loader"></div>
+		<div class="profile hidden">
+			<div class="picture"></div>
+			<div class="floater-profile">
+				<h4 class="nickname"></h4>
+				<h2 class="name"></h2>
+				<hr />
+				<div class="form-control">
+					<button class="logout-button">Logout</button>
+				</div>
+			</div>
+		</div>
+		<div class="loading hidden">
+			<div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		  <div class="loading-bar"></div>
+		</div>
+		<div class="default">
+			<h1>Auth0 Login Demo</h1>
+			<div class="form-control">
+				<button class="login-button">Login</button>
+			</div>
+			<p class="tooltip">Press the login button above to login.</p>
+		</div>
 	</div>
 	<script src="../env.js"></script>
 	<script src="../vendor/lock.min.js"></script>
