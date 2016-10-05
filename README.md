@@ -1,7 +1,7 @@
 # auth0-chrome-extension-poc
 This repository contains code that can be used as a base to initialize Auth0 in context of a Chrome Extension. The process looks like the following.
 
-<img width="1356" alt="screen shot 2016-10-05 at 1 48 09 am" src="https://cloud.githubusercontent.com/assets/1041315/19102646/e006f340-8a9f-11e6-8ee8-54b974784629.png">
+<img width="1378" alt="screen shot 2016-10-05 at 1 48 19 am" src="https://cloud.githubusercontent.com/assets/1041315/19102676/1b570854-8aa0-11e6-96ac-5207e4376748.png">
 ---
 <img width="1380" alt="screen shot 2016-10-05 at 1 55 44 am" src="https://cloud.githubusercontent.com/assets/1041315/19102656/f16429a0-8a9f-11e6-8c8c-3fefa0b37d95.png">
 ---
