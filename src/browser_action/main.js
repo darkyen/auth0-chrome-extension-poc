@@ -45,7 +45,11 @@ function renderDefaultView(){
   $('.login-button').addEventListener('click', function(){
     $('.default').classList.add('hidden');
     $('.loading').classList.remove('hidden');
-    authService.show();
+    authService.show({
+      theme: {
+        logo: 'https://cdn.auth0.com/styleguide/1.0.0/img/badge.png'
+      }
+    });
   });
 }
 
