@@ -1,4 +1,4 @@
-const authService = new AuthService(env.AUTH0_DOMAIN, env.AUTH0_CLIENT_ID, env.CHROME_APP_ID);
+const authService = new AuthService(env.AUTH0_DOMAIN, env.AUTH0_CLIENT_ID);
 
 // Minimal jQuery
 const $$ = document.querySelectorAll.bind(document);
@@ -16,7 +16,7 @@ function renderProfileView(){
 
   authService.getProfile(function (err, profile) {
     if(err){
-      document.body.innerHTML = 'There was an error fetching profile, ' + err.message;
+      document.body.innerHTML = 'There was an error fetching profile, ' + err.message + ' please reload the extension.';
       return;
     }
 

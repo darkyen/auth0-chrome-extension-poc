@@ -1,7 +1,6 @@
-function AuthService (domain, clientId, appId) {
+function AuthService (domain, clientId) {
   this.domain   = domain;
   this.clientId = clientId;
-  this.appId = appId;
 }
 
 AuthService.prototype.getIdToken = function () {

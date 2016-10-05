@@ -15,12 +15,11 @@
     "default_title": "Profile",
     "default_popup": "src/browser_action/browser_action.html"
   },
-  "content_security_policy": "script-src 'self' https://cdn.auth0.com/ chrome-extension-resource:",
+  "content_security_policy": "script-src 'self' https://cdn.auth0.com blob: filesystem: chrome-extension-resource:",
   "web_accessible_resources": [
     "src/callback/*"
   ],
   "permissions": [
-    "https://chrome-extension-sample.auth0.com/*",
-    "https://cdn.auth0.com/*"
+    "https://chrome-extension-sample.auth0.com/*"
   ]
 }

@@ -21,11 +21,16 @@ From `browser_action/browser_action.html` we open a new popup that contains Lock
       "src/callback/*"
     ]
   ```
+
 - You will need to allow access to your Auth0 domain and Auth0 CDN
 
   ```json
     "permissions": [
       "https://chrome-extension-sample.auth0.com/*",
-      "https://cdn.auth0.com/*"
     ]
+  ```
+
+- In content security policy, you'll need to allow, this is because Lock loads the client file from the CDN
+  ```json
+    "content_security_policy": "script-src 'self' https://cdn.auth0.com blob: filesystem: chrome-extension-resource:"
   ```
