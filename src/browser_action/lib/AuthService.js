@@ -21,28 +21,26 @@ AuthService.prototype.isLoggedIn = function () {
   return (payload.exp > (Date.now() / 1000));
 }
 
+
+function checkIfSet(obj, key) {
+  /*
+   * false      != null -> true
+   * true       != null -> true
+   * undefined  != null -> false
+   * null       != null -> false
+   */
+  return !!(obj && obj[key] != null);
+}
+
+
+function isChromeExtension(){
+  return !!(window.chrome && chrome.runtime && chrome.runtime.id)
+}
+
+
 AuthService.prototype.show = function (lockOptions) {
-  const runtime = chrome.runtime;
-
-  lockOptions = lockOptions || {};
-  lockOptions.auth = lockOptions.auth || {};
-  lockOptions.auth.redirectUrl = runtime.getURL('src/callback/callback.html');
-  lockOptions.auth.responseType = 'token';
-  lockOptions.auth.scope = 'openid';
-  lockOptions.closable = false;
-
-
-  var options = {
-    // Create url to login page, and pass it our lock options, optional
-    'url': runtime.getURL('src/login/login.html') + '#' + JSON.stringify(lockOptions),
-    'focused': true,
-    'type': 'popup',
-    'width': 320,
-    'height': 640
-  };
-
-  // At this point the extension will lose control
-  chrome.windows.create(options);
+  const lock = new Auth0Lock(this.clientId, this.domain, lockOptions);
+  lock.show();
 }
 
 

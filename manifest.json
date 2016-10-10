@@ -9,6 +9,14 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
+  "background": {
+    "scripts": [
+      "src/env.js",
+      "src/vendor/lock.min.js",
+      "src/background/background.js",
+      "src/background/handler.js"
+    ]
+  },
   "default_locale": "en",
   "browser_action": {
     "default_icon": "icons/icon19.png",
@@ -20,6 +28,11 @@
     "src/callback/*"
   ],
   "permissions": [
+    "notifications",
+    "webRequest",
+    "webRequestBlocking",
+    "identity",
+    "https://*.chromiumapp.org/auth0*",
     "https://chrome-extension-sample.auth0.com/*"
   ]
 }

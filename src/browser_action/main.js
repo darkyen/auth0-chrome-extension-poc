@@ -47,8 +47,17 @@ function renderDefaultView(){
     $('.loading').classList.remove('hidden');
     authService.show({
       theme: {
-        logo: 'https://cdn.auth0.com/styleguide/1.0.0/img/badge.png'
-      }
+        logo: 'https://cdn1.tnwcdn.com/wp-content/blogs.dir/1/files/2014/08/canary-logo.png',
+        primaryColor: '#FFC400'
+      },
+      auth: {
+        responseType: 'token',
+        scope: 'openid',
+      },
+      languageDictionary: {
+        title: 'Chrome Sample',
+      },
+      container: 'mainPopup'
     });
   });
 }

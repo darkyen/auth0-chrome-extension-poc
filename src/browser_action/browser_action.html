@@ -20,10 +20,6 @@
 			font-family: Helvetica, Ubuntu, Arial, sans-serif;
 		}
 
-		h1 {
-			font-size: 2em;
-		}
-
 		.hidden {
 			display: none;
 		}
@@ -98,63 +94,24 @@
 			background: #343434;
 		}
 
-		hr {
-			border: 0px;
-			border-bottom: #585858 1px solid;
-		}
-
-		h1,h4,h2 {
-			color: #fff;
-			font-weight: 300;
-		}
-
-		h1{
-			color: #eb5424;
-			text-align: center;
-		}
-
 		.nickname::before {
 			content: '@'
 		}
 
-		.form-control{
-			margin: 0.6em 0.4em;
-		}
-
-		button{
-			background: #fff;
-			border: 0px;
-			padding: 0.8em 0.6em;
-			width: 100%;
-		}
-
-		.logout-button{
-			background: #ff3e00;
-		}
-
-		.login-button{
-			background: #7ed321;
-		}
-
-		.tooltip{
-			text-align: center;
-			font-size: 11px;
-			color: #adadad;
-		}
 
 	</style>
+	<link href="https://cdn.auth0.com/styleguide/4.8.12/index.min.css" rel="stylesheet" />
+
 </head>
 <body>
 	<div id="mainPopup">
 		<div class="profile hidden">
 			<div class="picture"></div>
 			<div class="floater-profile">
-				<h4 class="nickname"></h4>
-				<h2 class="name"></h2>
+				<h5 class="nickname"></h5>
+				<h4 class="name"></h4>
 				<hr />
-				<div class="form-control">
-					<button class="logout-button">Logout</button>
-				</div>
+				<button class="btn btn-danger logout-button">Logout</button>
 			</div>
 		</div>
 		<div class="loading hidden">
@@ -164,15 +121,16 @@
 		  <div class="loading-bar"></div>
 		</div>
 		<div class="default">
-			<h1>Auth0 Login Demo</h1>
-			<div class="form-control">
-				<button class="login-button">Login</button>
+			<div class="text-center">
+				<h3>Chrome Demo</h1>
+				<button class="btn btn-success login-button">Login With Auth0</button>
+				<p class="caption">Press the login button above to login.</p>
 			</div>
-			<p class="tooltip">Press the login button above to login.</p>
 		</div>
 	</div>
 	<script src="../env.js"></script>
 	<script src="../vendor/lock.min.js"></script>
+	<script src="./lib/Auth0Chrome.js"></script>
 	<script src="./lib/jwt-decode.min.js"></script>
 	<script src="./lib/AuthService.js"></script>
 	<script src="./main.js"></script>
