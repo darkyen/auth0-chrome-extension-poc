@@ -9,24 +9,27 @@ This repository contains code that can be used as a base to initialize Auth0 in 
 
 
 # What is happening here
-From `browser_action/browser_action.html` we open a new popup that contains Lock in redirect mode at `login/login.html`, the `login.html` code will intialize a new Lock based on parameters passed by `browser_action` allowing the same page to be used with multiple locks. The `redirect_uri` is set to `callback/callback.html` where we set the `idToken` if you have background events or background pages in your application you can optionally send a message to your extension with the callback and initiate a visual feedback, here we simply send a notification.
+We override Auth0JS.login in the same fashion as our cordova handler does in order to create a chrome tab when using a social provider, in case of username password we intercept the request that posts the wsFed form and extract the location header, we close the original window (which is browser_action) and open the intended redirect-to window in a chrome tab as chrome shares cookies this works just fine and MFA works. 
 
 # Required Permissions
-- In chrome manifest you need to allow access to `src/callback/callback.html`
-
-  ```json
-    "web_accessible_resources": [
-      "src/callback/*"
-    ]
-  ```
 
 - You will need to allow access to your Auth0 domain and Auth0 CDN
 
   ```json
     "permissions": [
       "https://chrome-extension-sample.auth0.com/*",
+      "webRequest",
+      "webRequestBlocking",
+      "identity",
+      "https://{EXTENSION_ID}.chromiumapp.org/auth0/callback*"
+
     ]
   ```
+  Explanation of permissions
+  - webRequest : Allows Intecepting WebRequest used to create the virtual callback endpoint.
+  - webRequestBlocking : Allows control over cancelling requests / closing windows just in time. [WIP: I might be able to make do without this]
+  - identity: Googles way of creating and returning identity urls https://{EXTENSION_ID}.chromiumapp.org/ (Optionally we can drop this in favor of a simple polyfill for this)
+  - Access to "https://{EXTENSION_ID}.chromiumapp.org/auth0/callback*", allows intercepting the callback and authenticating.
 
 - In content security policy, you'll need to allow, this is because Lock loads the client file from the CDN
   ```json
