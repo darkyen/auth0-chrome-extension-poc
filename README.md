@@ -1,15 +1,9 @@
 # auth0-chrome-extension-poc
-This repository contains code that can be used as a base to initialize Auth0 in context of a Chrome Extension. The process looks like the following.
-
-<img width="1378" alt="screen shot 2016-10-05 at 1 48 19 am" src="https://cloud.githubusercontent.com/assets/1041315/19102676/1b570854-8aa0-11e6-96ac-5207e4376748.png">
----
-<img width="1380" alt="screen shot 2016-10-05 at 1 55 44 am" src="https://cloud.githubusercontent.com/assets/1041315/19102656/f16429a0-8a9f-11e6-8c8c-3fefa0b37d95.png">
----
-<img width="1378" alt="screen shot 2016-10-05 at 1 56 19 am" src="https://cloud.githubusercontent.com/assets/1041315/19102650/e6296d20-8a9f-11e6-8809-778443681aac.png">
+This repository contains code that can be used as a base to initialize Auth0 in context of a Chrome Extension. The process looks like the following (Screenshots incoming)
 
 
 # What is happening here
-We override Auth0JS.login in the same fashion as our cordova handler does in order to create a chrome tab when using a social provider, in case of username password we intercept the request that posts the wsFed form and extract the location header, we close the original window (which is browser_action) and open the intended redirect-to window in a chrome tab as chrome shares cookies this works just fine and MFA works. 
+We override Auth0JS.login in the same fashion as our cordova handler does in order to create a chrome tab when using a social provider, in case of username password we intercept the request that posts the wsFed form and extract the location header, we close the original window (which is browser_action) and open the intended redirect-to window in a chrome tab as chrome shares cookies this works just fine and MFA works.
 
 # Required Permissions
 
