@@ -1,5 +1,43 @@
 
+function EventEmitter(){
+  this._events = {};
+}
+
+EventEmitter.prototype = {
+    on: function (ev, handler) {
+        var events = this._events
+
+        ;(events[ev] || (events[ev] = [])).push(handler)
+    },
+    removeListener: function (ev, handler) {
+        var array = this._events[ev]
+
+        array && array.splice(array.indexOf(handler), 1)
+    },
+    emit: function (ev) {
+        var args = [].slice.call(arguments, 1),
+            array = this._events[ev] || []
+
+        for (var i = 0, len = array.length; i < len; i++) {
+            array[i].apply(this, args)
+        }
+    },
+    once: function (ev, handler) {
+        this.on(ev, remover)
+
+        function remover() {
+            handler.apply(this, arguments)
+            this.removeListener(ev, remover)
+        }
+    }
+}
+
+
+module.exports.constructor.prototype = module.exports
 function Auth0ChromeBackgroundHelper (clientID, domain) {
+  const ee = this;
+  EventEmitter.call(this);
+  // DON'T Emitter.prototype = new require('events').EventEmitter();
 
   const a0 = new Auth0({
     clientID: clientID,
@@ -66,12 +104,9 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
     // Send message to make the extension aware of login completion
     // Create the event
     const eName = result.error? 'authorization_error': 'authenticated';
-    const ev = new CustomEvent(eName, {
-      detail: result
-    });
 
-    // Dispatch/Trigger/Fire the event
-    document.dispatchEvent(ev);
+
+    ee.emit(eName, result);
 
     return response;
   }, {
@@ -79,3 +114,5 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
     urls: [redirectUrl + '*']
   }, ['blocking']);
 }
+
+Auth0ChromeBackgroundHelper.prototype =

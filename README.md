@@ -16,7 +16,6 @@ We override Auth0JS.login in the same fashion as our cordova handler does in ord
       "webRequestBlocking",
       "identity",
       "https://{EXTENSION_ID}.chromiumapp.org/auth0/callback*"
-
     ]
   ```
   Explanation of permissions
