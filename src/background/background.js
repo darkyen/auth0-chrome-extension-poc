@@ -49,8 +49,6 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
   // Required for our form-post callback handling only in case of when coming from lock
   chrome.webRequest.onHeadersReceived.addListener(function filterWSFedCallback (details) {
 
-    console.log('onHeadersReceived', details);
-
     const tabId = details.tabId;
 
     if ( details.method !== 'POST' ) {
@@ -72,7 +70,7 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
       return;
     }
 
-    const newTabUrl = 'https://' + domain + locationHeader.value;
+    const newTabUrl = locationHeader.value;
     chrome.tabs.create({
       url: newTabUrl,
       active: true
@@ -88,8 +86,6 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
 
 
   chrome.webRequest.onBeforeRequest.addListener(function filterAuth0Callback (details) {
-    console.log('onBeforeRequest', details);
-
     const tabId = details.tabId;
     const response = {};
 
