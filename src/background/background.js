@@ -1,9 +1,9 @@
 
-function EventEmitter(){
+function EventEmitterLight(){
   this._events = {};
 }
 
-EventEmitter.prototype = {
+EventEmitterLight.prototype = {
     on: function (ev, handler) {
         var events = this._events
 
@@ -32,12 +32,10 @@ EventEmitter.prototype = {
     }
 }
 
-
-module.exports.constructor.prototype = module.exports
 function Auth0ChromeBackgroundHelper (clientID, domain) {
   const ee = this;
-  EventEmitter.call(this);
-  // DON'T Emitter.prototype = new require('events').EventEmitter();
+  EventEmitterLight.call(this);
+  // DON'T Emitter.prototype = new require('events').EventEmitterLight();
 
   const a0 = new Auth0({
     clientID: clientID,
@@ -115,4 +113,4 @@ function Auth0ChromeBackgroundHelper (clientID, domain) {
   }, ['blocking']);
 }
 
-Auth0ChromeBackgroundHelper.prototype =
+Auth0ChromeBackgroundHelper.prototype = Object.assign({}, EventEmitterLight.prototype);
