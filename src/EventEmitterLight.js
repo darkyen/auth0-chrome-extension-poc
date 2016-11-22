@@ -1,8 +1,8 @@
+// Micro EE
 export class EventEmitterLight {
-
-  events = {};
-
-  constructor() {}
+  constructor() {
+    this.events = {};
+  }
 
   on(ev, handler) {
     (this.events[ev] || (this.events[ev] = [])).push(handler);
@@ -15,11 +15,7 @@ export class EventEmitterLight {
 
   emit(ev) {
     let args = [].slice.call(arguments, 1),
-      array = this.events[ev] || [];
-
-    for (var i = 0, len = array.length; i < len; i++) {
-      array[i].apply(this, args);
-    }
+    this.events[ev].forEach(fn => fn.apply(this, args));
   }
 
   once(ev, handler) {

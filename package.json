@@ -2,15 +2,14 @@
   "name": "auth0-chrome-extension",
   "version": "0.1.0",
   "description": "Wrapper to use Auth0 Lock in a Chrome Extension",
-  "main": "index.js",
+  "main": "dist/auth0chrome.js",
   "scripts": {
-    "build": "node run build"
+    "build": "node run build",
+    "build-example": "node run example"
   },
   "author": "Auth0",
   "license": "MIT",
   "dependencies": {
-    "auth0-lock": "^10.6.1",
-    "jwt-decode": "^2.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.18.0",

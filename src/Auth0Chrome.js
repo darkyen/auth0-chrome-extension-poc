@@ -1,24 +1,14 @@
-import Auth0 from 'auth0-js';
-
-function checkIfSet(obj, key) {
-  /*
-   * false      != null -> true
-   * true       != null -> true
-   * undefined  != null -> false
-   * null       != null -> false
-   */
-  return !!(obj && obj[key] != null);
+// Es6 Override
+if(!window.Auth0){
+  throw new Error('Auth0.just must be loaded, you can either do this by loading auth0-js or by loading Lock from the CDN/Bower package');
 }
 
-export class Auth0Chrome {
-
-  constructor(clientId, domain) {
-    this.auth0 = new Auth0({ clientID: clientId, domain });
-  }
-
+/*
+  @TODO: Enforce PKCE, this should not be using implicit flow.
+*/
+window.Auth0 = class extends window.Auth0{
+  // This is a passthrough, in most cases, so you can safely share code between packages
   login(options, callback) {
-    // TODO Change this to a property named 'disableSSO' for consistency.
-    // By default, options.sso is true
     if (!checkIfSet(options, 'sso')) {
       options.sso = true;
     }
@@ -44,7 +34,7 @@ export class Auth0Chrome {
       return this.loginWithPopup(options, callback);
     }
 
-    this.auth0._authorize(options);
+    this._authorize(options);
   }
 
   loginChromeExtension(options) {
@@ -57,8 +47,10 @@ export class Auth0Chrome {
       }
     ];
 
-    if ( this.auth0._sendClientInfo ) {
-      qs.push({ auth0Client: this.auth0._getClientInfoString() });
+    if ( this._sendClientInfo ) {
+      qs.push({
+        auth0Client: this._getClientInfoString()
+      });
     }
 
     const query = this._buildAuthorizeQueryString(qs);
@@ -70,10 +62,7 @@ export class Auth0Chrome {
       active: true
     });
   }
-  
-  parseHash(hash) {
-    return this.auth0.parseHash(hash);
-  }
+
 
   _getCallbackURL(options) {
     if(isChromeExtension()) {
@@ -81,6 +70,8 @@ export class Auth0Chrome {
     }
 
     return (options && typeof options.callbackURL !== 'undefined') ?
-        options.callbackURL : this.auth0._callbackURL;
+        options.callbackURL : this._callbackURL;
   }
 }
+
+export default window.Auth0;
