@@ -22,7 +22,6 @@ function renderProfileView(authResult){
       'Authorization': `Bearer ${authResult.access_token}`
     }
   }).then(resp => resp.json()).then((profile) => {
-    debugger;
     ['picture', 'name', 'nickname'].forEach((key) => {
 
        const element = $('.' +  key);
@@ -56,7 +55,7 @@ function renderDefaultView(){
 
 function main () {
   const authResult = JSON.parse(localStorage.authResult || '{}');
-  if(authResult.id_token){
+  if(authResult.access_token){
     renderProfileView(authResult);
   }else{
     renderDefaultView();

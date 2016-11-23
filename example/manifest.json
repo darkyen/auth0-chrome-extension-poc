@@ -13,6 +13,7 @@
       "persistent": false
     },
     "permissions": [
-        "identity"
+        "identity",
+        "notifications"
     ]
 }

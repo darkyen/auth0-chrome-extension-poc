@@ -92,9 +92,8 @@ var Auth0Chrome =
 	    value: function getAuthResult(url, interactive) {
 	      return new Promise(function (resolve, reject) {
 	        chrome.identity.launchWebAuthFlow({ url: url, interactive: interactive }, function (callbackURL) {
-	          /* oh chrome */
 	          if (chrome.runtime.lastError) {
-	            return reject(new Error(chrome.runtime.lastError));
+	            return reject(new Error(chrome.runtime.lastError.message));
 	          }
 	          resolve(callbackURL);
 	        });
