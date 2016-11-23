@@ -1,7 +1,7 @@
 {
-  "name": "auth0-chrome-extension",
-  "version": "0.1.0",
-  "description": "Wrapper to use Auth0 Lock in a Chrome Extension",
+  "name": "auth0-chrome-sdk",
+  "version": "0.4.0",
+  "description": "Library for authenticating in Chrome",
   "main": "dist/auth0chrome.js",
   "scripts": {
     "build": "node run build",
@@ -9,17 +9,20 @@
   },
   "author": "Auth0",
   "license": "MIT",
-  "dependencies": {
-  },
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.2",
     "babel-loader": "^6.2.8",
     "babel-plugin-transform-class-properties": "^6.19.0",
-    "babel-preset-es2015": "^6.18.0",
-    "babel-preset-latest": "^6.16.0",
+    "babel-plugin-transform-decorators-legacy": "^1.3.4",
+    "babel-preset-es2015-without-regenerator": "^1.0.1",
     "babel-preset-stage-0": "^6.16.0",
     "expose-loader": "^0.7.1",
     "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "babel-preset-es2015-sans-regenerator": "^6.9.0",
+    "core-decorators": "^0.14.0",
+    "qs": "^6.3.0"
   }
 }

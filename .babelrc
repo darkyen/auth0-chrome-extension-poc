@@ -1,4 +1,4 @@
 {
-  "plugins": ["transform-class-properties"],
-  "presets": ["es2015", "stage-0"]
+  "presets": ["es2015-sans-regenerator", "stage-0"],
+  "plugins": ["transform-decorators-legacy"]
 }
