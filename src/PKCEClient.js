@@ -42,7 +42,10 @@ class PKCEClient{
       body
     });
 
-    return result.json();
+    if(result.ok)
+     return result.json();
+
+    throw Error(response.statusText);
   }
 
   extractCode (resultUrl) {
