@@ -18,6 +18,7 @@
     "babel-preset-es2015-without-regenerator": "^1.0.1",
     "babel-preset-stage-0": "^6.16.0",
     "expose-loader": "^0.7.1",
+    "uglify-js": "git://github.com/mishoo/UglifyJS2#harmony",
     "webpack": "^1.13.3"
   },
   "dependencies": {

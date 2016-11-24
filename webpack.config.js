@@ -5,15 +5,27 @@ const config = {
 
   context: __dirname,
 
-  entry: [
-    './src/ChromeClient.js',
-  ],
+  entry: {
+    'auth0chrome.min': './index.js',
+    'auth0chrome': './index.js'
+  },
 
   output: {
     path: path.resolve(__dirname, './dist'),
-    filename: 'auth0chrome.js',
-    library: 'Auth0Chrome'
+    library: 'Auth0Chrome',
+    libraryTarget: 'umd',
+    filename: '[name].js'
   },
+
+  devtool: 'source-map',
+
+  plugins: [
+    new webpack.optimize.UglifyJsPlugin({
+      include: /\.min\.js$/,
+      minimize: true,
+      compress: true,
+    })
+  ],
 
   module: {
     loaders: [

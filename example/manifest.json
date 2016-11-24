@@ -9,7 +9,7 @@
         "default_popup": "src/browser_action/browser_action.html"
     },
     "background": {
-      "scripts": ["vendor/auth0chrome.js", "src/main.js"],
+      "scripts": ["./env.js", "vendor/auth0chrome.min.js", "src/main.js"],
       "persistent": false
     },
     "permissions": [

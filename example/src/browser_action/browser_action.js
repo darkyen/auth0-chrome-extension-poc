@@ -17,7 +17,7 @@ const $  = document.querySelector.bind(document);
 function renderProfileView(authResult){
   $('.default').classList.add('hidden');
   $('.loading').classList.remove('hidden');
-  fetch('https://chrome-extension-sample.auth0.com/userinfo', {
+  fetch(`https://${env.AUTH0_DOMAIN}/userinfo`, {
     headers: {
       'Authorization': `Bearer ${authResult.access_token}`
     }
