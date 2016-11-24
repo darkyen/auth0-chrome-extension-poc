@@ -1,1 +1,0 @@
-../../dist/auth0chrome.js

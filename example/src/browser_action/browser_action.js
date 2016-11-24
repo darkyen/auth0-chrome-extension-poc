@@ -17,12 +17,11 @@ const $  = document.querySelector.bind(document);
 function renderProfileView(authResult){
   $('.default').classList.add('hidden');
   $('.loading').classList.remove('hidden');
-  fetch('https://chrome-extension-sample.auth0.com/userinfo', {
+  fetch(`https://${env.AUTH0_DOMAIN}/userinfo`, {
     headers: {
       'Authorization': `Bearer ${authResult.access_token}`
     }
   }).then(resp => resp.json()).then((profile) => {
-    debugger;
     ['picture', 'name', 'nickname'].forEach((key) => {
 
        const element = $('.' +  key);
@@ -56,7 +55,7 @@ function renderDefaultView(){
 
 function main () {
   const authResult = JSON.parse(localStorage.authResult || '{}');
-  if(authResult.id_token){
+  if(authResult.access_token){
     renderProfileView(authResult);
   }else{
     renderDefaultView();

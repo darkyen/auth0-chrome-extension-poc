@@ -6,9 +6,8 @@ class ChromeClient extends PKCEClient {
   getAuthResult (url, interactive) {
     return new Promise((resolve, reject) => {
       chrome.identity.launchWebAuthFlow({url, interactive}, (callbackURL) => {
-        /* oh chrome */
         if ( chrome.runtime.lastError ) {
-          return reject(new Error(chrome.runtime.lastError))
+          return reject(new Error(chrome.runtime.lastError.message))
         }
         resolve(callbackURL);
       });
